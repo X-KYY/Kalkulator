@@ -11,34 +11,48 @@
          <div class="calculator">
             <!-- Calculator display -->
             <div class="calculator-display">
-                <p class="re-ouput"></p>
+                <p class="re-output"></p>
                 <p class="output"></p>
             </div>
             <!-- Calculator board -->
             <div class="calculator-board">
-                <button class="btn-other clear">AC</button>
-                <button class="btn-other function">+/-</button>
-                <button class="btn-other persent">%</button>
-                <button class="btn-operator operator">÷</button>
+                <div class="calculator-row">
+                    <button class="btn-other clear">AC</button>
+                    <button class="btn-other function">+/-</button>
+                    <button class="btn-other persent">%</button>
+                    <button class="btn-operator operator">÷</button>
+                </div>
                 <!-- Seperator -->
-                <button class="btn-number number">7</button>
-                <button class="btn-number number">8</button>
-                <button class="btn-number number">9</button>
-                <button class="btn-operator operator">x</button>
+                <div class="calculator-row">
+                    <button class="btn-number number">7</button>
+                    <button class="btn-number number">8</button>
+                    <button class="btn-number number">9</button>
+                    <button class="btn-operator operator">x</button>
+                </div>
+
                 <!-- Seperator -->
-                <button class="btn-number number">4</button>
-                <button class="btn-number number">5</button>
-                <button class="btn-number number">6</button>
-                <button class="btn-operator operator">-</button>
+                <div class="calculator-row">
+                    <button class="btn-number number">4</button>
+                    <button class="btn-number number">5</button>
+                    <button class="btn-number number">6</button>
+                    <button class="btn-operator operator">-</button>
+                </div>
+
                 <!-- Seperator -->
-                <button class="btn-number number">1</button>
-                <button class="btn-number number">2</button>
-                <button class="btn-number number">3</button>
-                <button class="btn-operator operator">+</button>
+                <div class="calculator-row">
+                    <button class="btn-number number">1</button>
+                    <button class="btn-number number">2</button>
+                    <button class="btn-number number">3</button>
+                    <button class="btn-operator operator">+</button>
+                </div>
+
                 <!-- Seperator -->
-                <button class="btn-number number">0</button>
-                <button class="btn-other decimal">.</button>
-                <button class="btn-other equals">=</button>
+                <div class="calculator-row">
+                    <button class="btn-number number" id="btn-zero">0</button>
+                    <button class="btn-other decimal">.</button>
+                    <button class="btn-other equals">=</button>              
+                </div>
+
             </div>
         </div>
         <script src="script.js"></script>
