@@ -20,16 +20,45 @@ body {
     /* background-color: #2c2c34; */
     border: 1px solid black;
     width: 80%;
-    height: 15%
+    height: 15%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 15px 10px 5px 10px;
+}
+.output {
+    font-size: 30px;
+    margin: 0px;
+}
+.re-output {
+    font-size: 17px;
+    margin: 0px;
 }
 .calculator-board {
     border: 1px solid black;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
     width: 80%;
     height: 75%;
+    box-sizing: border-box;
+    gap: 10px;
+}
+.calculator-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    gap: 10px;
 }
 button {
-    border-radius: 15px;
+    border-radius: 30px;
+    border: 1px solid black;
+    height: 85px;
+    flex: 1;
+    font-size: 1.5rem;
+}
+#btn-zero {
+    min-width: 49%;
 }
