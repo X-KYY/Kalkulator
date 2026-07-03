@@ -6,57 +6,73 @@ let previousNumber = '';
 let operator;
 let is2ndNumber = false;
 
-board.addEventListener('click', (event) => {
-    let button = event.target.closest('BUTTON');
-    if (!button) { return; }
-
-    // if a number clicked
-    if (button.classList.contains('number')) {
-        // if (is2ndNumber) {
-        //      = event.target.textContent;
-        //     output.append(pre)
-        currentNumber += event.target.textContent;
-        output.append(event.target.textContent)
-        console.log(currentNumber)
-    }
-    // if an operator clicked
-    if (button.classList.contains('operator')) {
-        if (currentNumber == '') {
-            currentNumber = '0';
-        } 
-        // If there is another operator
-        // if (output.textContent.at(-1) == ['+', "-"]) {
-        //     operator = event.target.textContent;
-        //     output.textContent = output.textContent.slice(0, -1);
-        //     return output.append(operator)
-        // }
-
-        previousNumber = currentNumber;
-        currentNumber = '';
-        is2ndNumber = true;
-        operator = event.target.textContent;
-        output.append(operator)
-    }
-    // Delete
-    if (button.classList.contains('delete')) {
-        output.textContent = output.textContent.slice(0, -1);
-        if (output.textContent == '') {
-            currentNumber = '';
-            previousNumber = '';
-        }
-    }
-    // If equal button clicked
-    if (button.classList.contains('equals')) {
-        alert(currentNumber, previousNumber)
-    }
-})
-
 function operate(operator, a, b) {
+    a = Number(a);
+    b = Number(b);
+
     calc = {
         "+": a + b,
         "-": a - b,
         "×": a * b,
-        "÷": a /b
+        "÷": a / b
     }
     return calc[operator];
 }
+
+board.addEventListener('click', (event) => {
+    let button = event.target.classList[1];
+    let value = event.target.textContent;
+    if (!event.target.closest('BUTTON')) {
+        return;
+    }
+
+    switch(button) {
+        case 'number':
+            output.textContent += value;
+            currentNumber += value;
+            break;
+
+        case 'operator':
+            if (currentNumber == '') {
+                currentNumber = previousNumber;
+                previousNumber = '';
+            }
+            if (previousNumber) {
+                previousNumber = operate(operator, previousNumber, currentNumber);
+                console.log(previousNumber)
+            } else {
+                previousNumber = currentNumber;
+            }
+            output.textContent += value;
+            operator = value;
+            currentNumber = '';
+            break;
+
+        case 'clear':
+            output.textContent = '';
+            currentNumber = '';
+            previousNumver = '';
+            operator = '';
+            break;
+
+        case 'delete':
+            if (output.textContent.at(-1) == operator) {
+                operator = '';
+                console.log('ini', operator)
+                console.log(previousNumber)
+            } else if (output.textContent.at(-1) == number) {
+                
+            }
+            output.textContent = output.textContent.slice(0, -1);
+            break;
+
+        case 'equals': 
+            output.textContent = operate(operator, previousNumber, currentNumber);
+            currentNumber = '';
+            previousNumber = '';
+            operator = '';
+            currentNumber = output.textContent;
+            break;
+    }
+
+})
