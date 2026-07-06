@@ -44,7 +44,6 @@ body {
     margin-left: 0px;
 }
 .calculator-board {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -74,7 +73,6 @@ body {
 }
 button {
     border-radius: 30px;
-    border: 1px solid black;
     height: 85px;
     flex: 1;
     font-size: 1.5rem;
