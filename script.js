@@ -33,6 +33,7 @@ function operate(array) {
     array.splice(indexx - 1, 3, newAngka);
 }
     if (!array.includes('*') && !array.includes('/')) {
+        while (array.length > 1) {
     for (let j = 0;j < array.length - 1;j++) {
             before = Number(array[j - 1]);
             after = Number(array[j + 1])
@@ -48,7 +49,7 @@ function operate(array) {
         }
     }
      newAngka = result.toString();
-     array.splice(indexx - 1, 3, newAngka);}
+     array.splice(indexx - 1, 3, newAngka);}}
 }
 
 function deleteLastNumber(data) {
