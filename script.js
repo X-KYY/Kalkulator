@@ -4,7 +4,6 @@ let reOutput = document.querySelector('.reOutput');
 const arrayOfNumber = [];
 let waitingNumber = '';
 let operator = '';
-let integerStatus = true; //positive
 
 function operate(array) {
     let before;
@@ -45,7 +44,6 @@ function operate(array) {
             break;
         }
     }
-     console.log('on')
      newAngka = result.toString();
      array.splice(indexx - 1, 3, newAngka);
     }
@@ -72,9 +70,6 @@ board.addEventListener('click', (event) => {
 
     switch(button) {
         case 'number':
-            if (integerStatus == false) {
-                waitingNumber += '-'
-            }
             if (output.textContent !== '') {
                 reOutput.textContent = '';
                 output.textContent = '';
@@ -89,21 +84,29 @@ board.addEventListener('click', (event) => {
                 reOutput.textContent = '';
                 output.textContent = '';
             }
-
             if (waitingNumber !== '') {
-                arrayOfNumber.push(waitingNumber)
+                arrayOfNumber.push(waitingNumber);
+            } else if (waitingNumber == '') {
+                waitingNumber = 0;
+                reOutput.textContent += waitingNumber;
+                arrayOfNumber.push(waitingNumber);
             }
 
             reOutput.textContent += value.textContent;
             arrayOfNumber.push(value.value)
             waitingNumber = '';
-            console.log(arrayOfNumber)
             break;
 
-        case 'positive-negative': 
-            if (integerStatus == true) {
-                integerStatus = false;
-                reOutput.textContent += '-';
+        case 'positive-negative':
+            if (waitingNumber == '') {
+                return;
+            }
+            let newInteger; 
+            if (Number(waitingNumber) > 0) {
+               waitingNumber = `-${waitingNumber}`;
+               reOutput.textContent = arrayOfNumber.join('').replace('*', '×') + waitingNumber;            } else if (Number(waitingNumber) < 0) {
+                waitingNumber = waitingNumber.replace(waitingNumber.slice(0, 1), '')
+                reOutput.textContent = arrayOfNumber.join('').replace('*', '×') + waitingNumber;
             }
             break;
 
