@@ -1,9 +1,13 @@
 let board = document.querySelector('.calculator-board');
+let display = document.querySelector('.calculator-display');
 let output = document.querySelector('.output');
 let reOutput = document.querySelector('.reOutput');
 const arrayOfNumber = [];
 let waitingNumber = '';
 let operator = '';
+let computedLength = parseFloat(getComputedStyle(display).width);
+let maxLength = computedLength >= '400' ? 30 : 20;
+console.log(maxLength)
 
 function operate(array) {
     let before;
@@ -50,6 +54,12 @@ function operate(array) {
         }
 }
 
+function makeDisplayClear() {
+
+    reOutput.textContent = 'wakwaw'
+
+}
+
 function deleteLastNumber(data) {
     if (waitingNumber !== '') {
         waitingNumber = waitingNumber.slice(0, -1);
@@ -66,6 +76,10 @@ board.addEventListener('click', (event) => {
 
     if (!event.target.closest('BUTTON')) {
         return;
+    }
+    if (Number(reOutput.textContent.length) > maxLength) {
+        makeDisplayClear();
+        console.log(reOutput.length)
     }
 
     switch(button) {
@@ -132,4 +146,4 @@ board.addEventListener('click', (event) => {
             break;
     }
 
-})
+}) 
