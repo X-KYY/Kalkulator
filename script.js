@@ -4,10 +4,8 @@ let output = document.querySelector('.output');
 let reOutput = document.querySelector('.reOutput');
 const arrayOfNumber = [];
 let waitingNumber = '';
-let operator = '';
 let computedLength = parseFloat(getComputedStyle(display).width);
-let maxLength = computedLength >= '400' ? 30 : 20;
-console.log(maxLength)
+let maxLength = computedLength >= '400' ? 39 : 29;
 
 function operate(array) {
     let before;
@@ -40,8 +38,6 @@ function operate(array) {
             indexx = j;
         if (array[j] == '+') {
             result = before + after;
-             console.log('ini after', before, after)
-            console.log(result)
             break;
         } else if (array[j] == '-') {
             result = before - after;
@@ -54,10 +50,8 @@ function operate(array) {
         }
 }
 
-function makeDisplayClear() {
-
-    reOutput.textContent = 'wakwaw'
-
+function deleteFirstNumber() {
+    reOutput.textContent = reOutput.textContent.slice(1)
 }
 
 function deleteLastNumber(data) {
@@ -78,8 +72,7 @@ board.addEventListener('click', (event) => {
         return;
     }
     if (Number(reOutput.textContent.length) > maxLength) {
-        makeDisplayClear();
-        console.log(reOutput.length)
+        deleteFirstNumber();
     }
 
     switch(button) {
@@ -94,6 +87,11 @@ board.addEventListener('click', (event) => {
             break;
 
         case 'operator':
+            if (isNaN(Number(reOutput.textContent.at(-1)))) {
+                arrayOfNumber[arrayOfNumber.length - 1] = value.value;
+                reOutput.textContent = reOutput.textContent.slice(0, -1) + value.textContent;
+                return;
+            } 
             if (output.textContent !== '') {
                 reOutput.textContent = '';
                 output.textContent = '';
